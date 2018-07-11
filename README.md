@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/luqasz/ecalc/tree/master.svg?style=svg)](https://circleci.com/gh/luqasz/ecalc/tree/master)
+
 Electronics calculator
 ======================
 
