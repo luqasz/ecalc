@@ -1,17 +1,48 @@
 version: 2
 jobs:
-   build:
+   build_linux:
      docker:
        - image: lukaszkostka/qt5:debian_buster
      steps:
        - checkout
        - run:
-          name: Run cmake
-          command: >
-            cmake
-            -H.
-            -GNinja
-            -Bbuild
+           name: Run cmake
+           command: >
+             cmake
+             -H.
+             -GNinja
+             -Bbuild
        - run:
-          name: Build
-          command: ninja -C build
+           name: Build
+           command: ninja -C build
+   build_macos:
+     macos:
+       xcode: "9.0"
+     steps:
+       - checkout
+       - run:
+           name: Install requirements
+           command: >
+             brew install
+             qt5
+             cmake
+             ninja
+       - run:
+           name: Run cmake
+           environment:
+             Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
+           command: >
+             cmake
+             -H.
+             -GNinja
+             -Bbuild
+       - run:
+           name: Build
+           command: ninja -C build
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_macos
+      - build_linux
