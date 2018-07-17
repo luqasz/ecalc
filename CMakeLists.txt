@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.7)
 project(ecalc)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
 set(PROJECT_VERSION "0.0.1")
 set(COPYRIGHT "Łukasz Kostka (c). All rights reserved.")
 set(IDENTIFIER "pl.netng")
