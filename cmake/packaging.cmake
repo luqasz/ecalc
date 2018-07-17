@@ -1,0 +1,10 @@
+set(CPACK_PACKAGE_FILE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_VENDOR "netng.pl")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Electronics calculators collection.")
+
+if(APPLE)
+    include(macos)
+endif(APPLE)
+include(CPack)
