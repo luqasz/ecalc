@@ -1,20 +1,27 @@
+defaults: &defaults
+  steps:
+   - checkout
+   - run:
+       name: Run cmake
+       command: >
+         cmake
+         -H.
+         -GNinja
+         -Bbuild
+   - run:
+       name: Build
+       command: ninja -C build
+
 version: 2
 jobs:
-   build_linux:
+   build_debian_buster:
      docker:
        - image: lukaszkostka/qt5:debian_buster
-     steps:
-       - checkout
-       - run:
-           name: Run cmake
-           command: >
-             cmake
-             -H.
-             -GNinja
-             -Bbuild
-       - run:
-           name: Build
-           command: ninja -C build
+     <<: *defaults
+   build_debian_stretch:
+     docker:
+       - image: lukaszkostka/qt5:debian_buster
+     <<: *defaults
    build_macos:
      macos:
        xcode: "9.0"
@@ -46,4 +53,5 @@ workflows:
   build:
     jobs:
       - build_macos
-      - build_linux
+      - build_debian_buster
+      - build_debian_stretch
