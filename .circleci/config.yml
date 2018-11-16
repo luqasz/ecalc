@@ -36,9 +36,6 @@ jobs:
              ninja
        - run:
            name: Run cmake
-           environment:
-             # This variable is required since brew link --force breaks cmake
-             Qt5_DIR: /usr/local/opt/qt5/lib/cmake/Qt5
            command: >
              cmake
              -H.
